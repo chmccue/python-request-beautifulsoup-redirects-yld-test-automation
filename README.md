@@ -3,8 +3,11 @@ A more elegant, faster and efficient redirect testing script that does not requi
 
 Dependencies:
 Ensure these are installed -
+
 -Python 2.7 (www.python.org/downloads)
+
 -Python library Beautiful Soup 4.  To install with pip, from command line enter $ pip install beautifulsoup4
+
 -Python library Requests.  To install with pip, from command line enter $ pip install requests
 
 1.  Ensure that files "yld_cpo_list.py" and "YLD-num_region_market_url.csv" files are in the same directory/location as "redirects_v3.py" file.
