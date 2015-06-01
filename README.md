@@ -12,5 +12,4 @@ Ensure these are installed -
 
 1.  Ensure that files "yld_cpo_list.py" and "YLD-num_region_market_url.csv" files are in the same directory/location as "redirects_v3.py" file.
 2.  From command line, in location of the files, enter $ python redirects_v3.py
-3.  File should begin running example, and output should be visible in the command line.  Run length depends on the computer speed and internet connection of the computer, but for average computer it should be completed in less than a minute (on my computer, run time for this example takes less than 20 seconds).
-
+3.  File should begin running example, and output should be visible in the command line.  Example runs over 100 url redirect checks.  Run length depends on the computer speed and internet connection of the computer, but for average computer it should be completed in less than a minute.
