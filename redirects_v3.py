@@ -82,7 +82,8 @@ class MyRedirectTest(unittest.TestCase):
                 print "expected URL: %s" %expected_url
                 print "HTTP Redirect Status Code: " + str(redirect_status_list)
                 print "FAIL*******************************************************************************FAIL"
-            print "\n"
+            finally:
+                print "\n"
             
 if __name__ == "__main__":
     unittest.main()
