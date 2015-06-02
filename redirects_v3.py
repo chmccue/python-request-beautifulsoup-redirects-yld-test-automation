@@ -1,19 +1,19 @@
 from bs4 import BeautifulSoup
 import requests, unittest
-from yld_cpo_list import marketCompareList as marketCompareList
+from files.yld_cpo_list import marketCompareList as marketCompareList
 
 
 BASE_URL = "http://www.yourlexusdealer.com/"
 OLD_URL = "CPO"
-NEW_URL = "lcertified/"
+NEW_URL = "lcertified/" 
+
         
 class MyRedirectTest(unittest.TestCase):
     def setUp(self):
         self.fail_count = 0
         self.fail_list = []
-        print "Start of redirect test." 
-        #pprint(self.json_dict_values)
-        #print "\n"
+        print "Start of redirect test.\n" 
+        print BASE_URL + " environment."
         
     def tearDown(self):
         print "FAIL COUNT: %d" %self.fail_count
@@ -21,8 +21,9 @@ class MyRedirectTest(unittest.TestCase):
             print "FAIL LIST: "
             for item in self.fail_list:
                 print item
-        #print self.fail_list
-        print "\nTest case completed.  Examine above output for any FAILs. \n\n"
+            print "\nTest case completed.  Examine above FAIL output. \n\n"
+        else:
+            print "\nTest case completed.  No Fails reported. \n\n"
         
     def test_redirects_review(self):
         print "\nTest Case:  Redirect test\n"
@@ -33,6 +34,7 @@ class MyRedirectTest(unittest.TestCase):
             expected_url = BASE_URL+marketURL+NEW_URL
             page = requests.get(original_url,auth = (username, password))
             soup = BeautifulSoup(page.content)
+
             print num
             try:
                 r = page.status_code
@@ -65,10 +67,19 @@ class MyRedirectTest(unittest.TestCase):
                     print "expected URL: %s" %expected_url
                     print "  actual URL: %s" % redirected_url
                     print "FAIL*******************************************************************************FAIL"
-            except AssertionError:
+            except:
                 self.fail_count += 1
+                self.fail_list.append([num,region,marketName,
+                                       "actual page title: %s" %redirected_page_title,
+                                       "HTTP Status Code: %d" %r,
+                                       "HTTP Redirect Status Code: " + str(redirect_status_list),
+                                       " entered URL: %s" %original_url,
+                                       "expected URL: %s" %expected_url,
+                                       "  actual URL: %s" %redirected_url])
                 print "Exception received while verifying HTTP Status Code.  Check link manually for more information."
                 print "POSSIBLE FAIL OR ERROR: HTTP Status Code %d" %(r) 
+                print " entered URL: %s" %original_url
+                print "expected URL: %s" %expected_url
                 print "HTTP Redirect Status Code: " + str(redirect_status_list)
                 print "FAIL*******************************************************************************FAIL"
             print "\n"
